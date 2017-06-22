@@ -37,7 +37,7 @@ public class CurrentWeather {
     private Sys sys;
     @JsonIgnore
     private long id;
-    @JsonIgnore
+    @JsonProperty("name")
     private String name;
     @JsonIgnore
     private int cod;
@@ -161,7 +161,7 @@ public class CurrentWeather {
 
     public void printWeather() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Weather in " + WeatherParser.city + "\n");
+        sb.append("Weather in " + name + "\n");
         sb.append("Longitude: " + coord.getLon() + ", Latitude: " + coord.getLat() + "\n");
         sb.append("Temperature: " + mainTemp.getTemperature() + "\n");
         sb.append("Pressure: " + mainTemp.getPressure() + "\n");

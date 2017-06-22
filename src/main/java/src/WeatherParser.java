@@ -44,7 +44,6 @@ public class WeatherParser {
             CurrentWeather cityWeather = objectMapper.readValue(sb.toString(), CurrentWeather.class);
             cityWeather.printWeather();
             System.out.println("Enter city name");
-            city = cityReqest.readLine();
         }
 
         cityReqest.close();
