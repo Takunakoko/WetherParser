@@ -14,19 +14,16 @@ import java.net.URLConnection;
  * Created by takunaka on 21.06.17.
  */
 public class WeatherParser {
-
     public static String city;
-    public static Config config = new Config();
 
     public static void main(String[] args) throws Exception {
+        StringBuilder sb;
+        Config config = new Config();
 
         BufferedReader cityReqest = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter city name:");
-        city = cityReqest.readLine();
 
-        StringBuilder sb;
-
-        while (!city.toLowerCase().equals("exit")) {
+        while (!(city = cityReqest.readLine()).toLowerCase().equals("exit")) {
             try {
 
                 URL wheatherUrl = new URL(config.getUrl() + city + "&units=metric&APPID=" + config.getApiKey());
