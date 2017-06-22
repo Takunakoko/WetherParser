@@ -18,29 +18,32 @@ public class WeatherParser {
     public static void main(String[] args) throws Exception {
 
         BufferedReader cityReqest = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter city name");
+        System.out.println("Enter city name:");
         Config.setCity(cityReqest.readLine());
 
-        URL wheatherUrl = new URL(Config.getUrl() + Config.getCity() + "&units=metric&APPID=" + Config.getApiKey());
-        URLConnection connection = wheatherUrl.openConnection();
+        while (!Config.getCity().equals("Exit")) {
+            URL wheatherUrl = new URL(Config.getUrl() + Config.getCity() + "&units=metric&APPID=" + Config.getApiKey());
+            URLConnection connection = wheatherUrl.openConnection();
 
-        BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-        String inputline;
-        StringBuilder sb = new StringBuilder();
+            String inputline;
+            StringBuilder sb = new StringBuilder();
 
-        while ((inputline = response.readLine()) != null){
-            sb.append(inputline);
+            while ((inputline = response.readLine()) != null) {
+                sb.append(inputline);
+            }
+
+            response.close();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            CurrentWeather cityWeather = objectMapper.readValue(sb.toString(), CurrentWeather.class);
+            System.out.println(cityWeather);
+            System.out.println("Enter city name");
+            Config.setCity(cityReqest.readLine());
         }
-        response.close();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        CurrentWeather cityWeather = objectMapper.readValue(sb.toString(), CurrentWeather.class);
-        System.out.println(cityWeather);
-
-
-
-
+        cityReqest.close();
 
     }
 }

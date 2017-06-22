@@ -1,17 +1,19 @@
 package src.jackson;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
  * Created by takunaka on 21.06.17.
  */
 public class Sys {
-    private int type;
-    private int id;
-    private String message;
-    private String country;
-    private long sunrise;
-    private long sunset;
+    @JsonProperty("type") private int type;
+    @JsonProperty("id")private int id;
+    @JsonProperty("message")private String message;
+    @JsonProperty("country") private String country;
+    @JsonProperty("sunrise") private long sunrise;
+    @JsonProperty("sunset") private long sunset;
 
     public int getType() {
         return type;

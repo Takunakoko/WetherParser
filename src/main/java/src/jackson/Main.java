@@ -1,6 +1,5 @@
 package src.jackson;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -10,11 +9,11 @@ public class Main {
 
     @JsonProperty("temp") private double temperature;
     @JsonProperty("pressure") private double pressure;
-    private String humidity;
-    private int temp_min;
-    private int temp_max;
-    private int sea_level;
-    private int grnd_level;
+    @JsonProperty("humidity") private String humidity;
+    @JsonProperty("temp_min") private int tempMin;
+    @JsonProperty("temp_max") private int tempMax;
+    @JsonProperty("sea_level") private int seaLevel;
+    @JsonProperty("grnd_level") private int grndLevel;
 
     public double getTemperature() {
         return temperature;
@@ -40,35 +39,35 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public int getTemp_min() {
-        return temp_min;
+    public int getTempMin() {
+        return tempMin;
     }
 
-    public void setTemp_min(int temp_min) {
-        this.temp_min = temp_min;
+    public void setTempMin(int tempMin) {
+        this.tempMin = tempMin;
     }
 
-    public int getTemp_max() {
-        return temp_max;
+    public int getTempMax() {
+        return tempMax;
     }
 
-    public void setTemp_max(int temp_max) {
-        this.temp_max = temp_max;
+    public void setTempMax(int tempMax) {
+        this.tempMax = tempMax;
     }
 
-    public int getSea_level() {
-        return sea_level;
+    public int getSeaLevel() {
+        return seaLevel;
     }
 
-    public void setSea_level(int sea_level) {
-        this.sea_level = sea_level;
+    public void setSeaLevel(int seaLevel) {
+        this.seaLevel = seaLevel;
     }
 
-    public int getGrnd_level() {
-        return grnd_level;
+    public int getGrndLevel() {
+        return grndLevel;
     }
 
-    public void setGrnd_level(int grnd_level) {
-        this.grnd_level = grnd_level;
+    public void setGrndLevel(int grndLevel) {
+        this.grndLevel = grndLevel;
     }
 }
