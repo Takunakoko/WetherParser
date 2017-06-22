@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import src.dto.CurrentWeather;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -22,20 +24,24 @@ public class WeatherParser {
         System.out.println("Enter city name:");
         city = cityReqest.readLine();
 
+        StringBuilder sb;
+
         while (!city.toLowerCase().equals("exit")) {
-            URL wheatherUrl = new URL(config.getUrl() + city + "&units=metric&APPID=" + config.getApiKey());
-            URLConnection connection = wheatherUrl.openConnection();
+            try {
 
-            BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            String inputline;
-            StringBuilder sb = new StringBuilder();
-
-            while ((inputline = response.readLine()) != null) {
-                sb.append(inputline);
+                URL wheatherUrl = new URL(config.getUrl() + city + "&units=metric&APPID=" + config.getApiKey());
+                URLConnection connection = wheatherUrl.openConnection();
+                BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                sb = new StringBuilder();
+                String inputline;
+                while ((inputline = response.readLine()) != null) {
+                    sb.append(inputline);
+                }
+                response.close();
+            } catch (Exception e) {
+                System.out.println("Oops, something went wrong. Try again." + "\n" + "Enter city name:");
+                continue;
             }
-
-            response.close();
 
             ObjectMapper objectMapper = new ObjectMapper();
             CurrentWeather cityWeather = objectMapper.readValue(sb.toString(), CurrentWeather.class);
@@ -43,6 +49,7 @@ public class WeatherParser {
             System.out.println("Enter city name");
             city = cityReqest.readLine();
         }
+
         cityReqest.close();
     }
 }
