@@ -11,17 +11,6 @@ public class Config {
 
     private static String url = "http://api.openweathermap.org/data/2.5/weather?q=";
 
-    private static String city = "";
-
-    public static String getCity() {
-        return city;
-    }
-
-    public static void setCity(String city) {
-        Config.city = city;
-    }
-
-
     public static String getApiKey() {
         return apiKey;
     }

@@ -1,8 +1,6 @@
-package src.jackson;
+package src.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Date;
 
 /**
  * Created by takunaka on 21.06.17.

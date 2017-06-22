@@ -1,8 +1,7 @@
 package src;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import src.Config;
-import src.CurrentWeather;
+import src.dto.CurrentWeather;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,14 +14,15 @@ import java.net.URLConnection;
 public class WeatherParser {
 
 
+    public static String city;
     public static void main(String[] args) throws Exception {
 
         BufferedReader cityReqest = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter city name:");
-        Config.setCity(cityReqest.readLine());
+        city = cityReqest.readLine();
 
-        while (!Config.getCity().equals("Exit")) {
-            URL wheatherUrl = new URL(Config.getUrl() + Config.getCity() + "&units=metric&APPID=" + Config.getApiKey());
+        while (!city.toLowerCase().equals("exit")) {
+            URL wheatherUrl = new URL(Config.getUrl() + city + "&units=metric&APPID=" + Config.getApiKey());
             URLConnection connection = wheatherUrl.openConnection();
 
             BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -38,9 +38,9 @@ public class WeatherParser {
 
             ObjectMapper objectMapper = new ObjectMapper();
             CurrentWeather cityWeather = objectMapper.readValue(sb.toString(), CurrentWeather.class);
-            System.out.println(cityWeather);
+            cityWeather.printWeather();
             System.out.println("Enter city name");
-            Config.setCity(cityReqest.readLine());
+            city = cityReqest.readLine();
         }
 
         cityReqest.close();

@@ -1,8 +1,10 @@
-package src;
+package src.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import src.jackson.*;
+import src.Config;
+import src.WeatherParser;
+import src.dto.*;
 import java.text.SimpleDateFormat;
 
 /**
@@ -141,10 +143,10 @@ public class CurrentWeather {
         this.cod = cod;
     }
 
-    @Override
-    public String toString() {
+
+    public void printWeather() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Weather in " + Config.getCity()+"\n");
+        sb.append("Weather in " + WeatherParser.city+"\n");
         sb.append("Longitude: " + coord.getLon() + ", Latitude: " + coord.getLat()+"\n");
         sb.append("Temperature: " + mainTemp.getTemperature()+"\n");
         sb.append("Pressure: " + mainTemp.getPressure()+"\n");
@@ -152,6 +154,6 @@ public class CurrentWeather {
         sb.append("Sunrise: " + sunriseT.format(sys.getSunrise() * 1000)+"\n");
         sb.append("Sunset: " + sunsetT.format(sys.getSunset()* 1000)+"\n");
 
-        return sb.toString();
+        System.out.println(sb);
     }
 }
