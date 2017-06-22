@@ -7,15 +7,15 @@ import java.text.SimpleDateFormat;
  */
 public class Config {
 
-    private static String apiKey = "e0de28a8cb0fee81c2e98e66f2480232";
+    private String apiKey = "e0de28a8cb0fee81c2e98e66f2480232";
 
-    private static String url = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private String url = "http://api.openweathermap.org/data/2.5/weather?q=";
 
-    public static String getApiKey() {
+    public String getApiKey() {
         return apiKey;
     }
 
-    public static String getUrl() {
+    public String getUrl() {
         return url;
     }
 

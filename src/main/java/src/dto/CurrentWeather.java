@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import src.Config;
 import src.WeatherParser;
 import src.dto.*;
+
 import java.text.SimpleDateFormat;
 
 /**
@@ -12,20 +13,34 @@ import java.text.SimpleDateFormat;
  */
 
 public class CurrentWeather {
-    @JsonProperty("coord")    private Coord coord;
-    @JsonIgnore private String weather;
-    @JsonIgnore    private String base;
-    @JsonProperty("main") private Main mainTemp;
-    @JsonIgnore private double visibility;
-    @JsonIgnore    private String wind;
-    @JsonIgnore    private int clouds;
-    @JsonIgnore    private String rain;
-    @JsonIgnore    private String snow;
-    @JsonIgnore    private String dt;
-    @JsonProperty("sys")    private Sys sys;
-    @JsonIgnore    private long id;
-    @JsonIgnore    private String name;
-    @JsonIgnore    private int cod;
+    @JsonProperty("coord")
+    private Coord coord;
+    @JsonIgnore
+    private String weather;
+    @JsonIgnore
+    private String base;
+    @JsonProperty("main")
+    private Main mainTemp;
+    @JsonIgnore
+    private double visibility;
+    @JsonIgnore
+    private String wind;
+    @JsonIgnore
+    private int clouds;
+    @JsonIgnore
+    private String rain;
+    @JsonIgnore
+    private String snow;
+    @JsonIgnore
+    private String dt;
+    @JsonProperty("sys")
+    private Sys sys;
+    @JsonIgnore
+    private long id;
+    @JsonIgnore
+    private String name;
+    @JsonIgnore
+    private int cod;
 
     public static SimpleDateFormat sunriseT = new SimpleDateFormat("HH:mm");
     public static SimpleDateFormat sunsetT = new SimpleDateFormat("HH:mm");
@@ -146,13 +161,13 @@ public class CurrentWeather {
 
     public void printWeather() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Weather in " + WeatherParser.city+"\n");
-        sb.append("Longitude: " + coord.getLon() + ", Latitude: " + coord.getLat()+"\n");
-        sb.append("Temperature: " + mainTemp.getTemperature()+"\n");
-        sb.append("Pressure: " + mainTemp.getPressure()+"\n");
-        sb.append("Country: " + sys.getCountry()+"\n");
-        sb.append("Sunrise: " + sunriseT.format(sys.getSunrise() * 1000)+"\n");
-        sb.append("Sunset: " + sunsetT.format(sys.getSunset()* 1000)+"\n");
+        sb.append("Weather in " + WeatherParser.city + "\n");
+        sb.append("Longitude: " + coord.getLon() + ", Latitude: " + coord.getLat() + "\n");
+        sb.append("Temperature: " + mainTemp.getTemperature() + "\n");
+        sb.append("Pressure: " + mainTemp.getPressure() + "\n");
+        sb.append("Country: " + sys.getCountry() + "\n");
+        sb.append("Sunrise: " + sunriseT.format(sys.getSunrise() * 1000) + "\n");
+        sb.append("Sunset: " + sunsetT.format(sys.getSunset() * 1000) + "\n");
 
         System.out.println(sb);
     }

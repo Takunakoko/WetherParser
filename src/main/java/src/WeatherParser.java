@@ -13,8 +13,9 @@ import java.net.URLConnection;
  */
 public class WeatherParser {
 
-
     public static String city;
+    public static Config config = new Config();
+
     public static void main(String[] args) throws Exception {
 
         BufferedReader cityReqest = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +23,7 @@ public class WeatherParser {
         city = cityReqest.readLine();
 
         while (!city.toLowerCase().equals("exit")) {
-            URL wheatherUrl = new URL(Config.getUrl() + city + "&units=metric&APPID=" + Config.getApiKey());
+            URL wheatherUrl = new URL(config.getUrl() + city + "&units=metric&APPID=" + config.getApiKey());
             URLConnection connection = wheatherUrl.openConnection();
 
             BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -42,8 +43,6 @@ public class WeatherParser {
             System.out.println("Enter city name");
             city = cityReqest.readLine();
         }
-
         cityReqest.close();
-
     }
 }
